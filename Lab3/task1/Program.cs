@@ -81,16 +81,32 @@ static List<string> selectFrequent(Tweets tweets){
     return l;
     }
 
-    static double IDF(Tweets tweets, string word){
+    static Dictionary<string,double>IDF(Tweets tweets){
         double totalNum = tweets.data.Count;
-        double countIncluding = 0;
+        Dictionary<string, double> countIDF = new Dictionary<string, double>();
         foreach(var tweet in tweets.data){
-            if(tweet.Includes(word)){
-                countIncluding++;
+            string[] words = System.Text.RegularExpressions.Regex.Split(tweet.text, @"\W+");
+            foreach( string word in words)
+            {
+            if(!string.IsNullOrWhiteSpace(word))
+            {
+                string formattedWord = word.ToLower();   
+                if (countIDF.ContainsKey(formattedWord)){
+                    countIDF[formattedWord]++;
+                }
+                else{
+                    countIDF[formattedWord] = 1;
+                }
+            }
             }
         }
-        return Math.Log(totalNum/countIncluding);
+        foreach(KeyValuePair<string, double> entry in countIDF){
+            countIDF[entry.Key] = Math.Log(totalNum/entry.Value);
+        }
+        return countIDF;
     }
+
+    
 
 
 
@@ -122,11 +138,10 @@ static void Main(string[] args)
             Console.WriteLine($"oldest: {oldest}");
             Dictionary<string, int>wordsCounted = CountWords(tweets);
             List<string> frequent = selectFrequent(tweets);
+            Dictionary<string, double> idfValues = IDF(tweets);
+            var sortedIDF = idfValues.OrderByDescending(x => x.Value).Take(10);
 
             
-
-
-
     }
 
 }
