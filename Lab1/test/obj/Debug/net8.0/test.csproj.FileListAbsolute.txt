@@ -1,0 +1,14 @@
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/bin/Debug/net8.0/test
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/bin/Debug/net8.0/test.deps.json
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/bin/Debug/net8.0/test.runtimeconfig.json
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/bin/Debug/net8.0/test.dll
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/bin/Debug/net8.0/test.pdb
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/test.GeneratedMSBuildEditorConfig.editorconfig
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/test.AssemblyInfoInputs.cache
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/test.AssemblyInfo.cs
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/test.csproj.CoreCompileInputs.cache
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/test.dll
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/refint/test.dll
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/test.pdb
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/test.genruntimeconfig.cache
+/Users/zuzannajarlaczynska/Desktop/c#/Lab1/test/obj/Debug/net8.0/ref/test.dll
