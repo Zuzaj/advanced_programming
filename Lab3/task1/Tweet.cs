@@ -3,17 +3,20 @@ namespace task1
 {
     public class Tweet
     {
-           public string ?text { get; set;}
-           public string ?user_nick {get; set;}
+           public string ?Text { get; set;}
+           public string ?UserName {get; set;}
+           public string ?LinkToTweet {get; set;}
+           public string ?FirstLinkUrl {get; set;}
+           public string ?CreatedAt {get; set;}
+           public string ?TweetEmbedCode {get; set;}
 
-           public string ?date {get; set;}
             public override string ToString()
             {
-                return $"Author: {user_nick}, Text: {text}";;
+                return $"Author: {UserName}, Text: {Text}";;
             }
 
             public bool Includes(string myWord){
-                string[] words = System.Text.RegularExpressions.Regex.Split(text, @"\W+");
+                string[] words = System.Text.RegularExpressions.Regex.Split(Text, @"\W+");
                 foreach( string word in words){
                 if(!string.IsNullOrWhiteSpace(word))
             {
@@ -26,6 +29,10 @@ namespace task1
             }
             return false;
             }
+
+            // public int CompareTo(Tweet? other){
+            //     return this.Text.CompareTo(other?.Text);
+            // }
     }
 
 
@@ -49,13 +56,13 @@ namespace task1
     public Tweet FindOldest()
     {
         this.SortByDate();
-        return this.data[data.Count-1];
+        return this.data[0];
     }
 
     public Tweet FindNewest()
     {
         this.SortByDate();
-        return this.data[0];
+        return this.data[data.Count-1];
     }
 
 } 
