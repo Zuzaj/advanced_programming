@@ -1,0 +1,1 @@
+curl -O https://home.agh.edu.pl/~thachaj/pz2/Laboratorium%2000.md

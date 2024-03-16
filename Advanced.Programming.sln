@@ -24,6 +24,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution.Items", "Solution.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Demos\Tests\Tests.csproj", "{3CD91027-A091-4290-90A4-29D26FFBAB09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{BEA3C83C-40AD-4D67-8DF2-37F08A2F7951}"
+	ProjectSection(SolutionItems) = preProject
+		Tasks\Laboratorium%2001.md = Tasks\Laboratorium%2001.md
+		Tasks\Laboratorium%2002.md = Tasks\Laboratorium%2002.md
+		Tasks\Laboratorium%2003.md = Tasks\Laboratorium%2003.md
+		Tasks\Laboratorium%2000.md = Tasks\Laboratorium%2000.md
+		Tasks\fetch.sh = Tasks\fetch.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
