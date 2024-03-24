@@ -2,140 +2,140 @@ namespace ConsoleApp1;
 
 public class Region
 {
-    public string regionId;
-    public string regionDescription;
+    public string RegionId { get; set; }
+    public string RegionDescription { get; set; }
 
     public Region(string id, string description)
     {
-        regionId = id;
-        regionDescription = description;
+        RegionId = id;
+        RegionDescription = description;
     }
 }
 
 public class Territory
 {
-    public string territoryId;
-    public string territoryDescription;
-    public string regionId;
+    public string TerritoryId { get; set; }
+    public string TerritoryDescription { get; set; }
+    public string RegionId { get; set; }
 
-    public Territory(string id_t, string description, string id_r)
+    public Territory(string territoryId, string description, string regionId)
     {
-        territoryId = id_t;
-        territoryDescription = description;
-        regionId = id_r;
+        TerritoryId = territoryId;
+        TerritoryDescription = description;
+        RegionId = regionId;
     }
 }
 
 public class Employee
 {
-    public string employeeId;
-    public string lastName;
-    public string firstName;
-    public string title;
-    public string courtesy;
-    public string birthdate;
-    public string hiredate;
-    public string address;
-    public string city;
-    public string region;
-    public string postalCode;
-    public string country;
-    public string homePhone;
-    public string extension;
-    public string photo;
-    public string notes;
-    public string reportsTo;
-    public string photoPath;
+    public string EmployeeId { get; set; }
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+    public string Title { get; set; }
+    public string Courtesy { get; set; }
+    public string Birthdate { get; set; }
+    public string HireDate { get; set; }
+    public string Address { get; set; }
+    public string City { get; set; }
+    public string Region { get; set; }
+    public string PostalCode { get; set; }
+    public string Country { get; set; }
+    public string HomePhone { get; set; }
+    public string Extension { get; set; }
+    public string Photo { get; set; }
+    public string Notes { get; set; }
+    public string ReportsTo { get; set; }
+    public string PhotoPath { get; set; }
 
-    public Employee(string employeeId_, string lastName_, string firstName_, string title_, string courtesy_, string birthdate_,
-        string hiredate_, string address_, string city_, string region_, string postalCode_, string country_,
-        string homePhone_, string extension_, string photo_, string notes_, string reportsTo_, string photoPath_)
+    public Employee(string employeeId, string lastName, string firstName, string title, string courtesy, string birthdate,
+        string hireDate, string address, string city, string region, string postalCode, string country,
+        string homePhone, string extension, string photo, string notes, string reportsTo, string photoPath)
     {
-        employeeId = employeeId_;
-        lastName = lastName_;
-        firstName = firstName_;
-        title = title_;
-        courtesy = courtesy_;
-        birthdate = birthdate_;
-        hiredate = hiredate_;
-        address = address_;
-        city = city_;
-        region = region_;
-        postalCode = postalCode_;
-        country = country_;
-        homePhone = homePhone_;
-        extension = extension_;
-        photo = photo_;
-        notes = notes_;
-        reportsTo = reportsTo_;
-        photoPath = photoPath_;
+        EmployeeId = employeeId;
+        LastName = lastName;
+        FirstName = firstName;
+        Title = title;
+        Courtesy = courtesy;
+        Birthdate = birthdate;
+        HireDate = hireDate;
+        Address = address;
+        City = city;
+        Region = region;
+        PostalCode = postalCode;
+        Country = country;
+        HomePhone = homePhone;
+        Extension = extension;
+        Photo = photo;
+        Notes = notes;
+        ReportsTo = reportsTo;
+        PhotoPath = photoPath;
     }
 }
 
 public class EmployeeTerritory
 {
-    public string employeeId;
-    public string territoryId;
+    public string EmployeeId { get; set; }
+    public string TerritoryId { get; set; }
 
-    public EmployeeTerritory(string employeeId_, string territoryId_)
+    public EmployeeTerritory(string employeeId, string territoryId)
     {
-        employeeId = employeeId_;
-        territoryId = territoryId_;
+        EmployeeId = employeeId;
+        TerritoryId = territoryId;
     }
 }
 
 public class Order
 {
-    public string orderId;
-    public string customerId;
-    public string employeeId;
-    public string orderDate;
-    public string requiredDate;
-    public string shippedDate;
-    public string shipVisa;
-    public string freight;
-    public string shipName;
-    public string shipAddress;
-    public string shipCity;
-    public string shipRegion;
-    public string shipPostalCode;
-    public string shipCountry;
+    public string OrderId { get; set; }
+    public string CustomerId { get; set; }
+    public string EmployeeId { get; set; }
+    public string OrderDate { get; set; }
+    public string RequiredDate { get; set; }
+    public string ShippedDate { get; set; }
+    public string ShipVisa { get; set; }
+    public string Freight { get; set; }
+    public string ShipName { get; set; }
+    public string ShipAddress { get; set; }
+    public string ShipCity { get; set; }
+    public string ShipRegion { get; set; }
+    public string ShipPostalCode { get; set; }
+    public string ShipCountry { get; set; }
 
-    public Order(string orderId_, string customerId_, string employeeId_, string orderDate_,
-        string requiredDate_, string shippedDate_, string shipVisa_, string freight_, string shipName_,
-        string shipAddress_, string shipCity_, string shipRegion_, string shipPostalCode_, string shipCountry_)
+    public Order(string orderId, string customerId, string employeeId, string orderDate,
+        string requiredDate, string shippedDate, string shipVisa, string freight, string shipName,
+        string shipAddress, string shipCity, string shipRegion, string shipPostalCode, string shipCountry)
     {
-        orderId = orderId_;
-        customerId = customerId_;
-        employeeId = employeeId_;
-        orderDate = orderDate_;
-        requiredDate = requiredDate_;
-        shippedDate = shippedDate_;
-        shipVisa = shipVisa_;
-        freight = freight_;
-        shipName = shipName_;
-        shipAddress = shipAddress_;
-        shipCity = shipCity_;
-        shipRegion = shipRegion_;
-        shipPostalCode = shipPostalCode_;
-        shipCountry = shipCountry_;
+        OrderId = orderId;
+        CustomerId = customerId;
+        EmployeeId = employeeId;
+        OrderDate = orderDate;
+        RequiredDate = requiredDate;
+        ShippedDate = shippedDate;
+        ShipVisa = shipVisa;
+        Freight = freight;
+        ShipName = shipName;
+        ShipAddress = shipAddress;
+        ShipCity = shipCity;
+        ShipRegion = shipRegion;
+        ShipPostalCode = shipPostalCode;
+        ShipCountry = shipCountry;
     }
 }
 
 public class Details
 {
-    public string orderId;
-    public string productId;
-    public string unitPrice;
-    public string quantity;
-    public string discount;
+    public string OrderId { get; set; }
+    public string ProductId { get; set; }
+    public string UnitPrice { get; set; }
+    public string Quantity { get; set; }
+    public string Discount { get; set; }
 
-    public Details(string orderId_, string productId_, string unitPrice_, string quantity_, string discount_)
+    public Details(string orderId, string productId, string unitPrice, string quantity, string discount)
     {
-        orderId = orderId_;
-        productId = productId_;
-        unitPrice = unitPrice_;
-        quantity = quantity_;
-        discount = discount_;
+        OrderId = orderId;
+        ProductId = productId;
+        UnitPrice = unitPrice;
+        Quantity = quantity;
+        Discount = discount;
     }
 }

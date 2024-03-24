@@ -1,31 +1,31 @@
 ﻿namespace ConsoleApp1;
 
-class Program
+internal static class Program
 {
-    static List<string> task_2(List<Employee> employees)
+    private static List<string> Task_2(List<Employee> employees)
     {
         var names = from e in employees
-            select e.lastName;
+            select e.LastName;
         foreach (var p in names.ToList()) Console.WriteLine(p);
         return names.ToList();
     }
 
-    static void task_3(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
+    private static void Task_3(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
         List<Territory> territories)
     {
         var query = from employee in employees
-            join employeeTerritory in employeeTerritories on employee.employeeId equals employeeTerritory.employeeId into
+            join employeeTerritory in employeeTerritories on employee.EmployeeId equals employeeTerritory.EmployeeId into
                 empTerritoryGroup
             from etg in empTerritoryGroup.DefaultIfEmpty()
-            join territory in territories on etg?.territoryId equals territory?.territoryId into territoryGroup
+            join territory in territories on etg?.TerritoryId equals territory?.TerritoryId into territoryGroup
             from tg in territoryGroup.DefaultIfEmpty()
-            join region in regions on tg?.regionId equals region?.regionId into regionGroup
+            join region in regions on tg?.RegionId equals region?.RegionId into regionGroup
             from rg in regionGroup.DefaultIfEmpty()
             select new
             {
-                LastName = employee.lastName,
-                Region = rg?.regionDescription ?? "Unknown Region",
-                Territory = tg?.territoryDescription ?? "Unknown Territory"
+                LastName = employee.LastName,
+                Region = rg?.RegionDescription ?? "Unknown Region",
+                Territory = tg?.TerritoryDescription ?? "Unknown Territory"
             };
         foreach (var result in query)
         {
@@ -33,72 +33,72 @@ class Program
         }
     }
 
-    static void task_4(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
+    private static void Task_4(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
         List<Territory> territories)
     {
         var query = from region in regions
-            join territory in territories on region.regionId equals territory.regionId
-            join employeeTerritory in employeeTerritories on territory.territoryId equals employeeTerritory.territoryId
-            join employee in employees on employeeTerritory.employeeId equals employee.employeeId
+            join territory in territories on region.RegionId equals territory.RegionId
+            join employeeTerritory in employeeTerritories on territory.TerritoryId equals employeeTerritory.TerritoryId
+            join employee in employees on employeeTerritory.EmployeeId equals employee.EmployeeId
             group employee by region
             into g
             select new
             {
                 Region = g.Key,
-                Employees = g.Select(emp => emp.lastName).Distinct().ToList()
+                Employees = g.Select(emp => emp.LastName).Distinct().ToList()
             };
 
         foreach (var item in query)
         {
-            Console.WriteLine("Region: " + item.Region.regionDescription);
+            Console.WriteLine("Region: " + item.Region.RegionDescription);
             Console.WriteLine("Employees: " + string.Join(", ", item.Employees));
             Console.WriteLine();
         }
     }
 
-    static void task_5(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
+    private static void Task_5(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
         List<Territory> territories)
     {
         var query = from region in regions
-            join territory in territories on region.regionId equals territory.regionId
-            join employeeTerritory in employeeTerritories on territory.territoryId equals employeeTerritory.territoryId
-            join employee in employees on employeeTerritory.employeeId equals employee.employeeId
+            join territory in territories on region.RegionId equals territory.RegionId
+            join employeeTerritory in employeeTerritories on territory.TerritoryId equals employeeTerritory.TerritoryId
+            join employee in employees on employeeTerritory.EmployeeId equals employee.EmployeeId
             group employee by region
             into g
             select new
             {
                 Region = g.Key,
-                Employees = g.Select(emp => emp.lastName).Distinct().ToList()
+                Employees = g.Select(emp => emp.LastName).Distinct().ToList()
             };
 
         foreach (var item in query)
         {
-            Console.WriteLine("Region: " + item.Region.regionDescription);
+            Console.WriteLine("Region: " + item.Region.RegionDescription);
             Console.WriteLine("Employees count: " + item.Employees.Count());
             Console.WriteLine();
         }
     }
 
-    static void task_6(List<Employee> employees,List<Order> orders, List<Details> details){
+    private static void Task_6(List<Employee> employees,List<Order> orders, List<Details> details){
         // var ordersByEmployee = 
         // orders.GroupJoin(details,
-        //                                         order => order.orderId,
-        //                                         detail => detail.orderId,
+        //                                         order => order.OrderId,
+        //                                         detail => detail.OrderId,
         //                                         (order, details) => new
         //                                         {
-        //                                             EmployeeID = order.employeeId,
-        //                                             TotalCost = details.Sum(detail => float.Parse(detail.unitPrice) * float.Parse(detail.quantity) * (1 - float.Parse(detail.discount)))
+        //                                             EmployeeID = order.EmployeeId,
+        //                                             TotalCost = details.Sum(detail => float.Parse(detail.UnitPrice) * float.Parse(detail.Quantity) * (1 - float.Parse(detail.Discount)))
         //                                         })
         //                               .GroupBy(x => x.EmployeeID)
         //                               .ToDictionary(g => g.Key, g => g.ToList());
 
         var ordersByEmployee = from e2 in (
                             from e in employees
-                            join order in orders on e.employeeId equals order.employeeId
-                            join detail in details on order.orderId equals detail.orderId
+                            join order in orders on e.EmployeeId equals order.EmployeeId
+                            join detail in details on order.OrderId equals detail.OrderId
                             select new{
                                 EmployeeID = e,
-                                TotalCost = float.Parse(detail.unitPrice)*float.Parse(detail.quantity)*(1-float.Parse(detail.discount))
+                                TotalCost = float.Parse(detail.UnitPrice)*float.Parse(detail.Quantity)*(1-float.Parse(detail.Discount))
                         
                             })
                             group e2 by e2.EmployeeID into g
@@ -113,32 +113,32 @@ class Program
   
         foreach (var item in ordersByEmployee)
         {
-            Console.WriteLine($"{item.Employee.employeeId}\t\t{item.Count}\t\t{item.Avg}\t\t{item.Max}");
+            Console.WriteLine($"{item.Employee.EmployeeId}\t\t{item.Count}\t\t{item.Avg}\t\t{item.Max}");
         }
 
 
     }
 
 
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-        FileReader<Region> regions_reader = new FileReader<Region>();
-        List<Region> regions = regions_reader.toList("csv_files/regions.csv", x => new Region(x[0], x[1]));
+        FileReader<Region> regionsReader = new FileReader<Region>();
+        List<Region> regions = regionsReader.ToList("csv_files/regions.csv", x => new Region(x[0], x[1]));
 
-        FileReader<Employee> employees_reader = new FileReader<Employee>();
-        List<Employee> employees = employees_reader.toList("csv_files/employees.csv", x => new Employee(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8],x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17]));
+        FileReader<Employee> employeesReader = new FileReader<Employee>();
+        List<Employee> employees = employeesReader.ToList("csv_files/employees.csv", x => new Employee(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8],x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17]));
 
-        FileReader<Territory> territory_reader = new FileReader<Territory>();
-        List<Territory> territories = territory_reader.toList("csv_files/territories.csv", x => new Territory(x[0], x[1], x[2]));
+        FileReader<Territory> territoryReader = new FileReader<Territory>();
+        List<Territory> territories = territoryReader.ToList("csv_files/territories.csv", x => new Territory(x[0], x[1], x[2]));
 
-        FileReader<EmployeeTerritory> empterr_reader = new FileReader<EmployeeTerritory>();
-        List<EmployeeTerritory> emp_ter = empterr_reader.toList("csv_files/employee_territories.csv", x => new EmployeeTerritory(x[0], x[1]));
+        FileReader<EmployeeTerritory> empterrReader = new FileReader<EmployeeTerritory>();
+        List<EmployeeTerritory> empTer = empterrReader.ToList("csv_files/employee_territories.csv", x => new EmployeeTerritory(x[0], x[1]));
 
-        FileReader<Order> order_reader = new FileReader<Order>();
-        List<Order> orders = order_reader.toList("csv_files/orders.csv", x => new Order(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13]));
+        FileReader<Order> orderReader = new FileReader<Order>();
+        List<Order> orders = orderReader.ToList("csv_files/orders.csv", x => new Order(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13]));
         
-        FileReader<Details> details_reader = new FileReader<Details>();
-        List<Details> details = details_reader.toList("csv_files/orders_details.csv", x => new Details(x[0], x[1], x[2], x[3], x[4]));
+        FileReader<Details> detailsReader = new FileReader<Details>();
+        List<Details> details = detailsReader.ToList("csv_files/orders_details.csv", x => new Details(x[0], x[1], x[2], x[3], x[4]));
 
 
         // var names = task_2(employees);
@@ -149,8 +149,8 @@ class Program
         // }
 
         // task_3(employees, emp_ter, regions, territories);
-         task_4(employees, emp_ter, regions, territories);
+         Task_4(employees, empTer, regions, territories);
         // task_5(employees, emp_ter, regions, territories);
-       // task_6(employees, orders, details);
+        // task_6(employees, orders, details);
     }
 }

@@ -2,7 +2,7 @@ namespace ConsoleApp1;
 
 public class FileReader<T>
 {
-    public List<T> toList(String path, Func<String[], T> generate)
+    public List<T> ToList(String path, Func<String[], T> generate)
     {
         List<T> list = new List<T>();
         using (var reader = new StreamReader(path))
