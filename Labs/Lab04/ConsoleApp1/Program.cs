@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1;
+﻿using ConsoleApp1.Model;
+
+namespace ConsoleApp1;
 
 internal static class Program
 {
