@@ -36,7 +36,9 @@ internal static class Program
             };
         foreach (var result in query)
         {
-            Console.WriteLine($"Nazwisko: {result.LastName}, Region: {result.Region}, Terytorium: {result.Territory}");
+            Console.WriteLine($"{nameof(result.LastName)}: {result.LastName}, " +
+                              $"{nameof(result.Region)}: {result.Region}, " +
+                              $"{nameof(result.Territory)}: {result.Territory}");
         }
     }
 
@@ -57,9 +59,10 @@ internal static class Program
 
         foreach (var item in query)
         {
-            Console.WriteLine("Region: " + item.Region.RegionDescription);
-            Console.WriteLine("Employees: " + string.Join(", ", item.Employees));
-            Console.WriteLine();
+            Console.WriteLine($"{nameof(item.Region.RegionDescription)}: {item.Region.RegionDescription}, " +
+                              $"{Environment.NewLine}" +
+                              $"{nameof(item.Employees)}: {string.Join(", ", item.Employees)}" +
+                              $"{Environment.NewLine}");
         }
     }
 
@@ -80,9 +83,10 @@ internal static class Program
 
         foreach (var item in query)
         {
-            Console.WriteLine("Region: " + item.Region.RegionDescription);
-            Console.WriteLine("Employees count: " + item.Employees.Count());
-            Console.WriteLine();
+            Console.WriteLine($"{nameof(item.Region.RegionDescription)}: {item.Region.RegionDescription}, " +
+                              $"{Environment.NewLine}" +
+                              $"Employees count: {item.Employees.Count}" +
+                              $"{Environment.NewLine}");
         }
     }
 
