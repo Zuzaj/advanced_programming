@@ -31,6 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{BEA3C83C
 		Tasks\Laboratorium%2003.md = Tasks\Laboratorium%2003.md
 		Tasks\Laboratorium%2000.md = Tasks\Laboratorium%2000.md
 		Tasks\fetch.sh = Tasks\fetch.sh
+		Tasks\Laboratorium%2004.md = Tasks\Laboratorium%2004.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab04", "Lab04", "{68DE9B23-B090-4C24-AEB4-D82EF06D73FC}"
