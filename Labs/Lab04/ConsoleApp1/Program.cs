@@ -6,10 +6,14 @@ internal static class Program
 {
     private static List<string> Task_2(IEnumerable<Employee> employees)
     {
-        var names = from e in employees
-            select e.LastName;
-        foreach (var p in names.ToList()) Console.WriteLine(p);
-        return names.ToList();
+        var names = employees.Select(e => e.LastName).ToList();
+
+        foreach (var p in names)
+        {
+            Console.WriteLine(p);
+        }
+        
+        return names;
     }
 
     private static void Task_3(IEnumerable<Employee> employees, IEnumerable<EmployeeTerritory> employeeTerritories, List<Region> regions,
