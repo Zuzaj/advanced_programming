@@ -79,26 +79,43 @@ class Program{
     }
 
     static void task_6(List<Employee> employees,List<Order> orders, List<Details> details){
-        var ordersByEmployee = orders.GroupJoin(details,
-                                                order => order.orderId,
-                                                detail => detail.orderId,
-                                                (order, details) => new
-                                                {
-                                                    EmployeeID = order.employeeId,
-                                                    TotalCost = details.Sum(detail => float.Parse(detail.unitPrice) * float.Parse(detail.quantity) * (1 - float.Parse(detail.discount)))
-                                                })
-                                      .GroupBy(x => x.EmployeeID)
-                                      .ToDictionary(g => g.Key, g => g.ToList());
+        // var ordersByEmployee = 
+        // orders.GroupJoin(details,
+        //                                         order => order.orderId,
+        //                                         detail => detail.orderId,
+        //                                         (order, details) => new
+        //                                         {
+        //                                             EmployeeID = order.employeeId,
+        //                                             TotalCost = details.Sum(detail => float.Parse(detail.unitPrice) * float.Parse(detail.quantity) * (1 - float.Parse(detail.discount)))
+        //                                         })
+        //                               .GroupBy(x => x.EmployeeID)
+        //                               .ToDictionary(g => g.Key, g => g.ToList());
+
+        var ordersByEmployee = from e2 in (
+                            from e in employees
+                            join order in orders on e.employeeId equals order.employeeId
+                            join detail in details on order.orderId equals detail.orderId
+                            select new{
+                                EmployeeID = e,
+                                TotalCost = float.Parse(detail.unitPrice)*float.Parse(detail.quantity)*(1-float.Parse(detail.discount))
+                        
+                            })
+                            group e2 by e2.EmployeeID into g
+                            select new{
+                                Employee = g.Key,
+                                Count = g.Count(),
+                                Avg = g.Average(o => o.TotalCost),
+                                Max = g.Max(o=>o.TotalCost)
+                            };
 
         Console.WriteLine("EmployeeID\tOrders Count\tAverage Value\tMax Value");
-        foreach (var kvp in ordersByEmployee)
+  
+        foreach (var item in ordersByEmployee)
         {
-            int orderCount = kvp.Value.Count;
-            float averageValue = kvp.Value.Average(order => order.TotalCost);
-            float maxValue = kvp.Value.Max(order => order.TotalCost);
-
-            Console.WriteLine($"{kvp.Key}\t\t{orderCount}\t\t{averageValue}\t\t{maxValue}");
+            Console.WriteLine($"{item.Employee.employeeId}\t\t{item.Count}\t\t{item.Avg}\t\t{item.Max}");
         }
+
+
     }
 
 
@@ -132,9 +149,9 @@ class Program{
     // }
 
     //task_3(employees, emp_ter, regions, territories);
-    //task_4(employees, emp_ter, regions, territories);
+    task_4(employees, emp_ter, regions, territories);
     //task_5(employees, emp_ter, regions, territories);
-    task_6(employees, orders, details);
+   // task_6(employees, orders, details);
 
 
 }
