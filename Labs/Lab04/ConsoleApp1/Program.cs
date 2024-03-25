@@ -92,29 +92,41 @@ internal static class Program
 
     private static void Task_6(IEnumerable<Employee> employees, IEnumerable<Order> orders, IEnumerable<Details> details)
     {
-        var ordersByEmployee = orders.GroupJoin(details,
-                order => order.OrderId,
-                detail => detail.OrderId,
-                (order, details) => new
-                {
-                    EmployeeID = order.EmployeeId,
-                    TotalCost = details.Sum(detail
-                        => float.Parse(detail.UnitPrice) * float.Parse(detail.Quantity) * (1 - float.Parse(detail.Discount))
-                    )
-                }
-            )
-            .GroupBy(x => x.EmployeeID)
-            .ToDictionary(g => g.Key, g => g.ToList());
+     
+        var ordersByEmployee = from e2 in (
+                            from e in employees
+                            join order in orders on e.EmployeeId equals order.EmployeeId
+                            join detail in details on order.OrderId equals detail.OrderId
+                            select new{
+                                EmployeeID = e,
+                                TotalCost = float.Parse(detail.UnitPrice)*float.Parse(detail.Quantity)*(1-float.Parse(detail.Discount))
+                        
+                            })
+                            group e2 by e2.EmployeeID into g
+                            select new{
+                                Employee = g.Key,
+                                Count = g.Count(),
+                                Avg = g.Average(o => o.TotalCost),
+                                Max = g.Max(o=>o.TotalCost)
+                            };
+
 
         Console.WriteLine("EmployeeID\tOrders Count\tAverage Value\tMax Value");
-        foreach (var kvp in ordersByEmployee)
+  
+        foreach (var item in ordersByEmployee)
         {
+
             var orderCount = kvp.Value.Count;
             var averageValue = kvp.Value.Average(order => order.TotalCost);
             var maxValue = kvp.Value.Max(order => order.TotalCost);
 
             Console.WriteLine($"{kvp.Key}\t\t{orderCount}\t\t{averageValue}\t\t{maxValue}");
+
+            Console.WriteLine($"{item.Employee.employeeId}\t\t{item.Count}\t\t{item.Avg}\t\t{item.Max}");
+
         }
+
+
     }
 
 
@@ -131,16 +143,7 @@ internal static class Program
         var orders = Path.Combine(path, "orders.csv").ReadCsvAsIEnumerable<Order>();
         var details = Path.Combine(path, "orders_details.csv").ReadCsvAsIEnumerable<Details>();
 
-        // var names = task_2(employees);
-        //
-        // foreach (var et in regions)
-        // {
-        //     Console.WriteLine(et.regionDescription);
-        // }
-
-        // task_3(employees, emp_ter, regions, territories);
-        // task_4(employees, emp_ter, regions, territories);
-        // task_5(employees, emp_ter, regions, territories);
         Task_6(employees, orders, details);
     }
+
 }
