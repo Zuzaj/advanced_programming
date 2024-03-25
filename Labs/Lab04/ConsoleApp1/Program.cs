@@ -4,7 +4,7 @@ namespace ConsoleApp1;
 
 internal static class Program
 {
-    private static List<string> Task_2(List<Employee> employees)
+    private static List<string> Task_2(IEnumerable<Employee> employees)
     {
         var names = from e in employees
             select e.LastName;
@@ -12,9 +12,10 @@ internal static class Program
         return names.ToList();
     }
 
-    private static void Task_3(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
-        List<Territory> territories)
+    private static void Task_3(IEnumerable<Employee> employees, IEnumerable<EmployeeTerritory> employeeTerritories, List<Region> regions,
+        IEnumerable<Territory> territories)
     {
+        if (regions == null) throw new ArgumentNullException(nameof(regions));
         var query = from employee in employees
             join employeeTerritory in employeeTerritories on employee.EmployeeId equals employeeTerritory.EmployeeId into
                 empTerritoryGroup
@@ -35,8 +36,8 @@ internal static class Program
         }
     }
 
-    private static void Task_4(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
-        List<Territory> territories)
+    private static void Task_4(IEnumerable<Employee> employees, IEnumerable<EmployeeTerritory> employeeTerritories, IEnumerable<Region> regions,
+        IEnumerable<Territory> territories)
     {
         var query = from region in regions
             join territory in territories on region.RegionId equals territory.RegionId
@@ -58,8 +59,8 @@ internal static class Program
         }
     }
 
-    private static void Task_5(List<Employee> employees, List<EmployeeTerritory> employeeTerritories, List<Region> regions,
-        List<Territory> territories)
+    private static void Task_5(IEnumerable<Employee> employees, IEnumerable<EmployeeTerritory> employeeTerritories, IEnumerable<Region> regions,
+        IEnumerable<Territory> territories)
     {
         var query = from region in regions
             join territory in territories on region.RegionId equals territory.RegionId
@@ -81,7 +82,7 @@ internal static class Program
         }
     }
 
-    private static void Task_6(List<Employee> employees,List<Order> orders, List<Details> details){
+    private static void Task_6(IEnumerable<Employee> employees,IEnumerable<Order> orders, IEnumerable<Details> details){
         // var ordersByEmployee = 
         // orders.GroupJoin(details,
         //                                         order => order.OrderId,
