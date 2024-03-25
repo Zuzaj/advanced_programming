@@ -131,23 +131,27 @@ internal static class Program
 
     private static void Main(string[] args)
     {
+        var projectRoot = PathUtils.GetProjectRoot().SetAsCurrentDirectory();
+
+        var path = Path.Combine(projectRoot, "csv_files");
+        
         var regionsReader = new FileReader<Region>();
-        var regions = regionsReader.ToList("csv_files/regions.csv", x => new Region(x[0], x[1]));
+        var regions = regionsReader.ToList(Path.Combine(path, "regions.csv"), x => new Region(x[0], x[1]));
 
         var employeesReader = new FileReader<Employee>();
-        var employees = employeesReader.ToList("csv_files/employees.csv", x => new Employee(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8],x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17]));
+        var employees = employeesReader.ToList(Path.Combine(path, "employees.csv"), x => new Employee(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8],x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17]));
 
         var territoryReader = new FileReader<Territory>();
-        var territories = territoryReader.ToList("csv_files/territories.csv", x => new Territory(x[0], x[1], x[2]));
+        var territories = territoryReader.ToList(Path.Combine(path, "territories.csv"), x => new Territory(x[0], x[1], x[2]));
 
         var empterrReader = new FileReader<EmployeeTerritory>();
-        var empTer = empterrReader.ToList("csv_files/employee_territories.csv", x => new EmployeeTerritory(x[0], x[1]));
+        var empTer = empterrReader.ToList(Path.Combine(path, "employee_territories.csv"), x => new EmployeeTerritory(x[0], x[1]));
 
         var orderReader = new FileReader<Order>();
-        var orders = orderReader.ToList("csv_files/orders.csv", x => new Order(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13]));
+        var orders = orderReader.ToList(Path.Combine(path, "orders.csv"), x => new Order(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13]));
         
         var detailsReader = new FileReader<Details>();
-        var details = detailsReader.ToList("csv_files/orders_details.csv", x => new Details(x[0], x[1], x[2], x[3], x[4]));
+        var details = detailsReader.ToList(Path.Combine(path, "orders_details.csv"), x => new Details(x[0], x[1], x[2], x[3], x[4]));
 
 
         // var names = task_2(employees);
