@@ -101,9 +101,9 @@ internal static class Program
         Console.WriteLine("EmployeeID\tOrders Count\tAverage Value\tMax Value");
         foreach (var kvp in ordersByEmployee)
         {
-            int orderCount = kvp.Value.Count;
-            float averageValue = kvp.Value.Average(order => order.TotalCost);
-            float maxValue = kvp.Value.Max(order => order.TotalCost);
+            var orderCount = kvp.Value.Count;
+            var averageValue = kvp.Value.Average(order => order.TotalCost);
+            var maxValue = kvp.Value.Max(order => order.TotalCost);
 
             Console.WriteLine($"{kvp.Key}\t\t{orderCount}\t\t{averageValue}\t\t{maxValue}");
         }
@@ -112,23 +112,23 @@ internal static class Program
 
     private static void Main(string[] args)
     {
-        FileReader<Region> regionsReader = new FileReader<Region>();
-        List<Region> regions = regionsReader.ToList("csv_files/regions.csv", x => new Region(x[0], x[1]));
+        var regionsReader = new FileReader<Region>();
+        var regions = regionsReader.ToList("csv_files/regions.csv", x => new Region(x[0], x[1]));
 
-        FileReader<Employee> employeesReader = new FileReader<Employee>();
-        List<Employee> employees = employeesReader.ToList("csv_files/employees.csv", x => new Employee(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8],x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17]));
+        var employeesReader = new FileReader<Employee>();
+        var employees = employeesReader.ToList("csv_files/employees.csv", x => new Employee(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8],x[9], x[10], x[11], x[12], x[13], x[14], x[15], x[16], x[17]));
 
-        FileReader<Territory> territoryReader = new FileReader<Territory>();
-        List<Territory> territories = territoryReader.ToList("csv_files/territories.csv", x => new Territory(x[0], x[1], x[2]));
+        var territoryReader = new FileReader<Territory>();
+        var territories = territoryReader.ToList("csv_files/territories.csv", x => new Territory(x[0], x[1], x[2]));
 
-        FileReader<EmployeeTerritory> empterrReader = new FileReader<EmployeeTerritory>();
-        List<EmployeeTerritory> empTer = empterrReader.ToList("csv_files/employee_territories.csv", x => new EmployeeTerritory(x[0], x[1]));
+        var empterrReader = new FileReader<EmployeeTerritory>();
+        var empTer = empterrReader.ToList("csv_files/employee_territories.csv", x => new EmployeeTerritory(x[0], x[1]));
 
-        FileReader<Order> orderReader = new FileReader<Order>();
-        List<Order> orders = orderReader.ToList("csv_files/orders.csv", x => new Order(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13]));
+        var orderReader = new FileReader<Order>();
+        var orders = orderReader.ToList("csv_files/orders.csv", x => new Order(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13]));
         
-        FileReader<Details> detailsReader = new FileReader<Details>();
-        List<Details> details = detailsReader.ToList("csv_files/orders_details.csv", x => new Details(x[0], x[1], x[2], x[3], x[4]));
+        var detailsReader = new FileReader<Details>();
+        var details = detailsReader.ToList("csv_files/orders_details.csv", x => new Details(x[0], x[1], x[2], x[3], x[4]));
 
 
         // var names = task_2(employees);
