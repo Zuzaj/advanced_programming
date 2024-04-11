@@ -83,16 +83,15 @@ internal static class Program
 
         foreach (var item in query)
         {
-            Console.WriteLine($"{nameof(item.Region.RegionDescription)}: {item.Region.RegionDescription}, " +
-                              $"{Environment.NewLine}" +
-                              $"Employees count: {item.Employees.Count}" +
-                              $"{Environment.NewLine}");
+            Console.WriteLine("Region: " + item.Region.regionDescription);
+            Console.WriteLine("Employees count: " + item.Employees.Count());
+            Console.WriteLine();
         }
     }
 
-    private static void Task_6(IEnumerable<Employee> employees, IEnumerable<Order> orders, IEnumerable<Details> details)
-    {
-     
+    static void task_6(List<Employee> employees,List<Order> orders, List<Details> details){
+        
+
         var ordersByEmployee = from e2 in (
                             from e in employees
                             join order in orders on e.EmployeeId equals order.EmployeeId
@@ -112,10 +111,9 @@ internal static class Program
 
 
         Console.WriteLine("EmployeeID\tOrders Count\tAverage Value\tMax Value");
-  
+        
         foreach (var item in ordersByEmployee)
         {
-
             var orderCount = kvp.Value.Count;
             var averageValue = kvp.Value.Average(order => order.TotalCost);
             var maxValue = kvp.Value.Max(order => order.TotalCost);
@@ -125,8 +123,6 @@ internal static class Program
             Console.WriteLine($"{item.Employee.employeeId}\t\t{item.Count}\t\t{item.Avg}\t\t{item.Max}");
 
         }
-
-
     }
 
 
@@ -145,5 +141,4 @@ internal static class Program
 
         Task_6(employees, orders, details);
     }
-
 }
