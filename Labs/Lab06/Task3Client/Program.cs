@@ -29,6 +29,7 @@ socket.Send(lenBajty, SocketFlags.None);
 socket.Send(wiadomoscBajty, SocketFlags.None);
 if (wiadomosc == "!end"){
     isRunning = false;
+    break;
 } 
 var bufor_len = new byte[4];
 socket.Receive(bufor_len, SocketFlags.None);

@@ -17,7 +17,7 @@ public static void ReturnFilesDirectories(Socket socketKlienta, string myDir){
                             message += "\nDirectories: ";
                             foreach (string directory in directories)
                             {
-                                message +=  Path.GetFileName(directory);
+                                message +=  $"{Path.GetFileName(directory)} ";
                             }
                             message += "\n[End of list]";
     
@@ -74,9 +74,8 @@ public static void Main(string[]argv){
     String wiadomoscKlienta = Encoding.UTF8.GetString(bufor_message, 0, receivedBytes);
     // Console.WriteLine($"Dostałem wiadomość od klienta: \"{wiadomoscKlienta}\" o długości: {messageLenght}");
     if (wiadomoscKlienta == "!end"){
-        SendMessage(socketKlienta, "Program ends");
-
         isRunning = false;
+        SendMessage(socketKlienta, "Program ends");
     }
 
     if (wiadomoscKlienta == "list"){
@@ -102,6 +101,9 @@ public static void Main(string[]argv){
         }
         // socketKlienta.Close();
     }   
+    }
+    else{
+        SendMessage(socketKlienta, "nieznane polecenie");
     }
     }
     End(socketSerwera);
