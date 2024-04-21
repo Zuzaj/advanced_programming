@@ -7,10 +7,10 @@ class Program
     static void Main()  
     {  
            
-        //Task_1(0);
-        // Task_2("somedata.txt","somedataHash.txt", algotMD5);
+        //Task_1(1);
+         Task_2("somedata.txt","somedata_Hash.txt", algotMD5);
         // Task_3("somedata.txt", "somedataSign.dat");
-        Task_4("somedata.txt", "somedataAES.dat", "pass", 1);
+        // Task_4("somedata.txt", "somedataAES.dat", "pass", 1);
     }  
 
     static String algoSHA256(String napis)
@@ -130,15 +130,13 @@ public static byte[] AESDecrypt(string password, byte[] salt, byte[]initVector,i
                 decryptionStreamBacking, decAlg.CreateDecryptor(), CryptoStreamMode.Write);
             decrypt.Write(input_data, 0, input_data.Length);
              decrypt.Flush();
-            // decrypt.Close();
              k1.Reset();
             return decryptionStreamBacking.ToArray();
 }
     public static byte[]? AESEncrypt(String password, byte[]salt, byte[]initVector,
                     int iterations, byte[]input_data)
 {
-    //System.Console.WriteLine(salt.Length);
-      //      System.Console.WriteLine(initVector.Length); 
+
             Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(password, salt, iterations, HashAlgorithmName.SHA256);
             Aes encAlg = Aes.Create();
             encAlg.IV = initVector;
@@ -221,10 +219,11 @@ public static byte[] AESDecrypt(string password, byte[] salt, byte[]initVector,i
 
 public static void Task_4(string fileA, string fileB, string password, int type){
     string text = File.ReadAllText(fileA);
+    //czyli losowymi danymi dodanymi do hasła przed obliczeniem skrótu
     byte[] salt = Encoding.UTF8.GetBytes("CwuuJx/7");
-       // byte[] utfD1 = new System.Text.UTF8Encoding(false).GetBytes(text);
-        byte[] initVector = Encoding.UTF8.GetBytes("uyZG5sl561Wo2ZTE");
-        int liczbaIteracji = 5;
+    byte[] initVector = Encoding.UTF8.GetBytes("uyZG5sl561Wo2ZTE");
+    int liczbaIteracji = 5;
+
 if (type == 0){
 
     string file = File.ReadAllText(fileA);
@@ -237,7 +236,6 @@ if (type == 1){
      byte[] decrypted = AESDecrypt(password, salt, initVector, liczbaIteracji, file);
      string decryptedText =  Encoding.UTF8.GetString(decrypted);
      File.WriteAllBytes(fileB,decrypted);
-    //string rozszyfrowanyNapis = new UTF8Encoding(false).GetString(decrypted);
      Console.WriteLine($"Original text: {text}");
      Console.WriteLine($"Decrypted text: {decryptedText}");
 
