@@ -8,7 +8,7 @@ class Program
 {  
     static void Main()  
     {  
-        //Task_1("territories.csv", ',');
+       // Task_1("territories.csv", ',');
         (List<List<string>> data, List<string> columnNames) = ReadCsv("territories.csv", ',');
        // Task_2(data,columnNames);
         Dictionary<string, (string type, bool nullable)> columnsInfo= AnalyzeColumns(data, columnNames);
@@ -158,7 +158,7 @@ class Program
 
     public static void SelectData(string tableName, SqliteConnection connection){
         SqliteCommand selectCmd = connection.CreateCommand();
-        selectCmd.CommandText = "SELECT * FROM "+tableName+";";
+        selectCmd.CommandText = "SELECT * FROM "+tableName+" where regionid > 1;";
         selectCmd.ExecuteNonQuery();
         using (SqliteDataReader reader = selectCmd.ExecuteReader())
             {
